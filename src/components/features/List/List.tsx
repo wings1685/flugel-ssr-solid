@@ -3,7 +3,6 @@ import { revalidate } from "@solidjs/router";
 import { updateTask } from "@/server/db/tasks/updateTask";
 import { deleteTask } from "@/server/db/tasks/deleteTask";
 import type { TaskSchema } from "@/_global/lib/validate";
-import type { TaskItem } from "@/server/db/types";
 
 type DataId = TaskSchema['id'];
 
@@ -20,7 +19,7 @@ const deleteData = async (id: DataId) => {
 };
 
 export type Props = {
-	tasks: TaskItem[];
+	tasks: TaskSchema[];
 };
 
 export default function List(props: Props) {
