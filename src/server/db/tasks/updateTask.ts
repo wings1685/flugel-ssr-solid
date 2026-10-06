@@ -1,22 +1,22 @@
 import { eq } from "drizzle-orm";
 import { db } from "../";
-import { updateTaskSchema, validateSafeParse } from "@/_global/lib/validate";
+import { taskSchema, validateSafeParse } from "@/_global/lib/validate";
 import { task, taskDetail } from "../schema";
 import type { TaskDetail } from "../types";
-import type { UpdateTaskSchema } from "@/_global/lib/validate";
+import type { TaskSchema } from "@/_global/lib/validate";
 
-export const updateTask = async (values?: UpdateTaskSchema) => {
+export const updateTask = async (values?: TaskSchema) => {
 	if (!values) throw new Error('Task Not Found.');
 
 	const input = {
 		...values,
 		id: +(values.id ?? ''),
 	};
-	const result = validateSafeParse(updateTaskSchema, input);
+	const result = validateSafeParse(taskSchema, input);
 	if (!result.success) throw new Error('Missing fields');
 
 	const { id, title, text } = result.output;
-	const taskData: Pick<UpdateTaskSchema, 'title'> = { title };
+	const taskData: Pick<TaskSchema, 'title'> = { title };
 
 	await db.transaction(async (tx) => {
 		await tx.update(task).set(taskData).where(eq(task.id, id));

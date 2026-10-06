@@ -2,12 +2,12 @@ import { createEffect, createSignal, For } from "solid-js";
 import { revalidate } from "@solidjs/router";
 import { updateTask } from "@/server/db/tasks/updateTask";
 import { deleteTask } from "@/server/db/tasks/deleteTask";
-import type { UpdateTaskSchema } from "@/_global/lib/validate";
+import type { TaskSchema } from "@/_global/lib/validate";
 import type { TaskItem } from "@/server/db/types";
 
-type DataId = UpdateTaskSchema['id'];
+type DataId = TaskSchema['id'];
 
-const editData = async (data?: UpdateTaskSchema) => {
+const editData = async (data?: TaskSchema) => {
 	"use server";
 
 	await updateTask(data);
@@ -24,16 +24,12 @@ export type Props = {
 };
 
 export default function List(props: Props) {
-	const [ taskitems, setTaskItem ] = createSignal<UpdateTaskSchema[]>([]);
+	const [ taskitems, setTaskItem ] = createSignal<TaskSchema[]>([]);
 
 	createEffect(
 		() => ({ tasks: props.tasks }),
 		data => {
-			setTaskItem(data.tasks.map(task => ({
-				id: task.id,
-				title: task.title,
-				text: task.text,
-			})));
+			setTaskItem(data.tasks);
 		},
 	);
 
