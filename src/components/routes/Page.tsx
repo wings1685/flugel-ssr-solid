@@ -1,17 +1,16 @@
 import { createMemo } from "solid-js";
 import { query, useLocation } from "@solidjs/router";
 import { Form, Find, List } from "@/components/features";
-import { fetchTasks } from "@/server/db/tasks/fetchTasks";
-import { buildFindQuery } from "@/server/db/tasks/fetchTasks";
+import { buildFindQuery, fetchTasks } from "@/server/db/tasks/fetchTasks";
 import type { RouteDefinition } from "@solidjs/router";
 
 const getTasks = query(async (search?: string) => {
 	"use server";
 
 	const findQuery = buildFindQuery(search ?? '');
-	const tasks = await fetchTasks(findQuery);
+	const tasks = await fetchTasks(findQuery ?? {});
 
-	return tasks;
+	return { tasks, findQuery };
 }, 'get-tasks');
 
 export const route = {
@@ -20,13 +19,13 @@ export const route = {
 
 export default function Page() {
 	const loc = useLocation();
-	const tasks = createMemo(() => getTasks(loc.search));
+	const data = createMemo(() => getTasks(loc.search));
 
 	return (
 		<main>
 			<Form />
-			<Find />
-			<List tasks={ tasks() } />
+			<Find { ...data().findQuery } />
+			<List tasks={ data().tasks } />
 		</main>
 	)
 };

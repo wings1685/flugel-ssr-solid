@@ -1,9 +1,8 @@
 import { eq, like, asc, desc } from "drizzle-orm";
 import { db } from "../";
-import { defaultFindValues, findSchema, validateParse } from "@/_global/lib/validate";
 import { task, taskDetail } from "../schema";
+import { defaultFindValues, findSchema, validateParse } from "@/_global/lib/validate";
 import type { FindSchema } from "@/_global/lib/validate";
-import type { DeepGuard } from "@/_global/lib/types.js";
 
 export const buildFindQuery = (search: string) => {
 	const params = new URLSearchParams(search);
@@ -17,7 +16,7 @@ export const buildFindQuery = (search: string) => {
 	return findQuery;
 };
 
-export const fetchTasks = async (findQuery: DeepGuard<FindSchema>) => {
+export const fetchTasks = async (findQuery: FindSchema) => {
 	const query = db
 		.select({
 			id: task.id,

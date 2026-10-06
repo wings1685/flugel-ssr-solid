@@ -1,44 +1,19 @@
-import { createEffect, createSignal } from "solid-js";
-import { defaultFindValues } from "@/_global/lib/validate";
-import { useLocation, useNavigate } from "@solidjs/router";
+import { useNavigate } from "@solidjs/router";
 import type { FindSchema } from "@/_global/lib/validate";
 
-type HandleInputEvent = InputEvent & {
-	currentTarget: HTMLInputElement;
-	target: HTMLInputElement;
-};
-
-export default function Find() {
-	const loc = useLocation();
+export default function Find(props: FindSchema) {
 	const navigate = useNavigate();
-	const [ findData, setFindData ] = createSignal(defaultFindValues);
 
-	createEffect(
-		() => loc.search,
-		search => {
-			const params = new URLSearchParams(search);
-			setFindData({
-				title: params.get('title') ?? defaultFindValues.title ?? '',
-				sort: (params.get('sort') ?? defaultFindValues.sort) as FindSchema['sort'],
-			})
-		},
-	);
-
-	const handleFind = (e: SubmitEvent) => {
+	const handleFind = (e: SubmitEvent & { currentTarget: HTMLFormElement; target: Element; }) => {
 		e.preventDefault();
 
-		const params = new URLSearchParams(findData());
+		const formData = new FormData(e.currentTarget);
+		const query = {
+			title: formData.get('title')?.toString() ?? '',
+			sort: formData.get('sort')?.toString() ?? 'desc',
+		};
+		const params = new URLSearchParams(query);
 		navigate(`/?${params}`);
-	};
-
-	const handleInput = (e: HandleInputEvent) => {
-		const input = { ...findData() };
-		if (e.currentTarget.name === 'title') {
-			input.title = e.currentTarget.value;
-		} else {
-			input.sort = e.currentTarget.value as FindSchema['sort'];
-		}
-		setFindData(input);
 	};
 
 	return (
@@ -46,13 +21,13 @@ export default function Find() {
 			<h1>Find</h1>
 			<form id="find_form" onSubmit={ handleFind }>
 				<fieldset>
-					<input type="text" name="title" value={ findData().title } onInput={ handleInput } />
+					<input type="text" name="title" value={ props.title } />
 					<label>
-						<input type="radio" name="sort" value="asc" checked={ findData().sort === 'asc' } onInput={ handleInput } />
+						<input type="radio" name="sort" value="asc" checked={ props.sort === 'asc' } />
 						<span>ASC</span>
 					</label>
 					<label>
-						<input type="radio" name="sort" value="desc" checked={ findData().sort === 'desc' } onInput={ handleInput } />
+						<input type="radio" name="sort" value="desc" checked={ props.sort === 'desc' } />
 						<span>DESC</span>
 					</label>
 					<button>Find</button>

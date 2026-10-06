@@ -3,9 +3,8 @@ import { db } from "../";
 import { deleteTaskSchema, validateSafeParse } from "@/_global/lib/validate";
 import { task, taskDetail } from "../schema";
 import type { DeleteTaskSchema } from "@/_global/lib/validate";
-import type { DeepGuard } from "@/_global/lib/types.js";
 
-export const deleteTask = async (values: DeepGuard<DeleteTaskSchema>) => {
+export const deleteTask = async (values: DeleteTaskSchema) => {
 	const input = { id: +(values.id ?? '') };
 	const result = validateSafeParse(deleteTaskSchema, input);
 	if (!result.success) throw new Error('Missing fields');

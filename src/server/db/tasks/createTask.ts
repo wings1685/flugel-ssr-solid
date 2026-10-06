@@ -3,9 +3,8 @@ import { task, taskDetail } from "../schema";
 import { createTaskSchema, validateSafeParse } from "@/_global/lib/validate";
 import type { CreateTaskSchema } from "@/_global/lib/validate";
 import type { TaskDetail } from "../types.ts";
-import type { DeepGuard } from "@/_global/lib/types.js";
 
-export const createTask = async (values: DeepGuard<CreateTaskSchema>) => {
+export const createTask = async (values: CreateTaskSchema) => {
 	const result = validateSafeParse(createTaskSchema, values);
 	if (!result.success) throw new Error('Missing fields');
 
