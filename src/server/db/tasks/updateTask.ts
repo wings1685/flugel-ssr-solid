@@ -1,13 +1,22 @@
 import { eq } from "drizzle-orm";
 import { db } from "../";
+import { updateTaskSchema, validateSafeParse } from "@/_global/lib/validate";
 import { task, taskDetail } from "../schema";
 import type { TaskDetail } from "../types";
 import type { UpdateTaskSchema } from "@/_global/lib/validate";
 import type { DeepGuard } from "@/_global/lib/types.js";
 
-export const updateTask = async (values: DeepGuard<UpdateTaskSchema>) => {
-	const { id, title, text } = values;
+export const updateTask = async (values?: DeepGuard<UpdateTaskSchema>) => {
+	if (!values) throw new Error('Task Not Found.');
 
+	const input = {
+		...values,
+		id: +(values.id ?? ''),
+	};
+	const result = validateSafeParse(updateTaskSchema, input);
+	if (!result.success) throw new Error('Missing fields');
+
+	const { id, title, text } = result.output;
 	const taskData: Pick<UpdateTaskSchema, 'title'> = { title };
 
 	await db.transaction(async (tx) => {

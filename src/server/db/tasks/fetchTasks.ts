@@ -1,12 +1,12 @@
 import { eq, like, asc, desc } from "drizzle-orm";
 import { db } from "../";
-import { task, taskDetail } from "../schema";
 import { defaultFindValues, findSchema, validateParse } from "@/_global/lib/validate";
+import { task, taskDetail } from "../schema";
 import type { FindSchema } from "@/_global/lib/validate";
 import type { DeepGuard } from "@/_global/lib/types.js";
 
-export const buildFindQuery = (url: URL) => {
-	const params = url.searchParams;
+export const buildFindQuery = (search: string) => {
+	const params = new URLSearchParams(search);
 	const findQuery = {
 		title: params.get('title') ?? defaultFindValues.title,
 		sort: params.get('sort') ?? defaultFindValues.sort,

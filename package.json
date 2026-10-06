@@ -29,8 +29,8 @@
     "@solidjs/meta": "^1.0.0-next.2",
     "@solidjs/router": "^2.0.0-next.31",
     "@solidjs/web": "^2.0.0-rc.11",
+    "dotenv": "^18.0.5",
     "drizzle-orm": "^0.45.3",
-    "ky": "^2.1.0",
     "mysql2": "^3.24.5",
     "solid-js": "^2.0.0-rc.11",
     "valibot": "^1.5.0"
