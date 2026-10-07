@@ -23,7 +23,7 @@ export type Props = {
 };
 
 export default function List(props: Props) {
-	const [ taskitems, setTaskItem ] = createSignal<TaskSchema[]>([]);
+	const [ taskItems, setTaskItem ] = createSignal<TaskSchema[]>([]);
 
 	createEffect(
 		() => ({ tasks: props.tasks }),
@@ -33,7 +33,7 @@ export default function List(props: Props) {
 	);
 
 	const handleEdit = async (id: DataId) => {
-		const data = taskitems().find(d => d.id === id);
+		const data = taskItems().find(d => d.id === id);
 		await editData(data);
 
 		revalidate();
@@ -49,7 +49,7 @@ export default function List(props: Props) {
 		<div>
 			<h1>List</h1>
 			<ul>
-				<For each={ taskitems() } keyed={ false }>
+				<For each={ taskItems() } keyed={ false }>
 					{(task, index) => (
 						<li>
 							<input type="text" value={ task().title } onInput={ e => setTaskItem(prev => prev.map((t, i) => i === index ? { ...t, title: e.currentTarget.value } : t)) } />
