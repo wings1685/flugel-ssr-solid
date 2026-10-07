@@ -1,4 +1,5 @@
 import { useNavigate } from "@solidjs/router";
+import { defaultFindValues } from "@/_global/lib/validate";
 import type { FindSchema } from "@/_global/lib/validate";
 
 export default function Find(props: FindSchema) {
@@ -9,9 +10,9 @@ export default function Find(props: FindSchema) {
 
 		const formData = new FormData(e.currentTarget);
 		const query = {
-			title: formData.get('title')?.toString() ?? '',
-			sort: formData.get('sort')?.toString() ?? 'desc',
-		};
+			title: formData.get('title')?.toString() ?? defaultFindValues ?? '',
+			sort: formData.get('sort')?.toString() ?? defaultFindValues.sort,
+		} as FindSchema;
 		const params = new URLSearchParams(query);
 		navigate(`/?${params}`);
 	};
