@@ -3,10 +3,10 @@ import { query, useLocation } from "@solidjs/router";
 import { Form, Find, List } from "@/components/features";
 import { buildFindQuery, fetchTasks } from "@/server/db/tasks/fetchTasks";
 
-const getTasks = query(async (search?: string) => {
+const getTasks = query(async (search: string) => {
 	"use server";
 
-	const findQuery = buildFindQuery(search ?? '');
+	const findQuery = buildFindQuery(search);
 	const tasks = await fetchTasks(findQuery ?? {});
 
 	return { tasks, findQuery };

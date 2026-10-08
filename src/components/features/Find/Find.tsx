@@ -10,7 +10,7 @@ export default function Find(props: FindSchema) {
 
 		const formData = new FormData(e.currentTarget);
 		const query = {
-			title: formData.get('title')?.toString() ?? defaultFindValues ?? '',
+			title: formData.get('title')?.toString() ?? defaultFindValues.title,
 			sort: formData.get('sort')?.toString() ?? defaultFindValues.sort,
 		} as FindSchema;
 		const params = new URLSearchParams(query);

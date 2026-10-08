@@ -11,7 +11,7 @@ export default function Document(props: ParentProps) {
 		<html lang="ja">
 			<head>
 				<meta charset="utf-8" />
-				<title>SSR Test</title>
+				<title>Solid SSR Test</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<HydrationScript />
 			</head>
