@@ -7,7 +7,7 @@ const getTasks = query(async (search: string) => {
 	"use server";
 
 	const findQuery = buildFindQuery(search);
-	const tasks = await fetchTasks(findQuery ?? {});
+	const tasks = await fetchTasks(findQuery);
 
 	return { tasks, findQuery };
 }, 'get-tasks');
