@@ -1,4 +1,4 @@
-import { createMemo, Show } from "solid-js";
+import { createMemo } from "solid-js";
 import { rawSignal, setRawSignal } from "@/_global/stores/raw";
 import { piquoStore } from "@/_global/piquo";
 import { loadFromServer } from "./_models/load.server";
