@@ -8,6 +8,6 @@ export const loadFromServer = query(async () => {
 	const { piquoSignal } = piquoStore('piquoSignal');
 
 	return {
-		rawRunesServer: rawSignal.forServer, piquoRunesServer: piquoSignal().forServer,
+		rawSignalServer: rawSignal.forServer, piquoSignalServer: piquoSignal().forServer,
 	};
 }, 'from-server');

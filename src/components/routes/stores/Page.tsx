@@ -13,7 +13,7 @@ export default function Page() {
 		<div>
 			<h1>Raw Store</h1>
 			<fieldset>
-				<span>forServer: { data().rawRunesServer }</span>
+				<span>forServer: { data().rawSignalServer }</span>
 				<button onClick={ () => handleServerStore('raw') }>Click</button>
 			</fieldset>
 			<fieldset>
@@ -22,7 +22,7 @@ export default function Page() {
 			</fieldset>
 			<h1>Piquo Store</h1>
 			<fieldset>
-				<span>forServer: { data().piquoRunesServer }</span>
+				<span>forServer: { data().piquoSignalServer }</span>
 				<button onClick={ () => handleServerStore('piquo') }>Click</button>
 			</fieldset>
 			<fieldset>
