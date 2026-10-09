@@ -10,6 +10,8 @@ Solid SSR での挙動を見るためだけの実験場です。
 
 - Drizzle ORM 0.45.3
 - Drizzle Kit 0.31.11
+- Solid Signal
+- Nano Stores
 
 ## Experiments
 
