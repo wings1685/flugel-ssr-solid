@@ -17,10 +17,10 @@ export default function Page() {
 	const data = createMemo(() => getTasks(loc.search));
 
 	return (
-		<main>
+		<>
 			<Form />
 			<Find { ...data().findQuery } />
 			<List tasks={ data().tasks } />
-		</main>
+		</>
 	)
 };
