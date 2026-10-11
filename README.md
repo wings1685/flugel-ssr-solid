@@ -18,9 +18,10 @@ Solid SSR での挙動を見るためだけの実験場です。
 この実験場では以下を行いました。
 
 - Solid + Drizzle での CRUD 処理
-- SSR 状態汚染を防ぐグローバルストア機構の安全性検証
+- 自作グローバルストア機構は理論上でなく SSR 状態汚染を防ぐのか安全性検証
 
 ## Related Articles
 
 - [各 JS フレームワークのみでの DB 連携探訪記](https://wings.hatenablog.com/entry/withoutLaravelFestival)
 - [Astro 上の Solid / Svelte / Vue にグローバルストアを持たせたい](https://wings.hatenablog.com/entry/AstroGlobalStores)
+- [自作のストア機構が理論上でなく実質として SSR で安全なのか確認祭](https://wings.hatenablog.com/entry/ssrUnsafeStoresFestival)

@@ -8,7 +8,7 @@ export const handleServerStore = (key: StoreName) => {
 	if (key === 'raw') {
 		setRawSignal('forServer');
 	} else if (key === 'piquo') {
-		const { setPiqueSignal } = piquoStore('piquoSignal');
-		setPiqueSignal('forServer');
+		const { setPiquoSignal } = piquoStore('piquoSignal');
+		setPiquoSignal('forServer');
 	}
 };
