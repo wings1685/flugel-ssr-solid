@@ -35,6 +35,30 @@ declare module "virtual:file-routes" {
   /** The flat route manifest, in scan order. */
   const routes: readonly [
     {
+      path: "/building/";
+      page: true;
+      $component: FileRouteLazyRef<typeof import("./src/routes/building/index")>;
+      $$route?: undefined;
+    },
+    {
+      path: "/building/list_a/";
+      page: true;
+      $component: FileRouteLazyRef<typeof import("./src/routes/building/list_a/index")>;
+      $$route?: undefined;
+    },
+    {
+      path: "/building/list_b/";
+      page: true;
+      $component: FileRouteLazyRef<typeof import("./src/routes/building/list_b/index")>;
+      $$route?: undefined;
+    },
+    {
+      path: "/building/list_c/";
+      page: true;
+      $component: FileRouteLazyRef<typeof import("./src/routes/building/list_c/index")>;
+      $$route?: undefined;
+    },
+    {
       path: "/";
       page: true;
       $component: FileRouteLazyRef<typeof import("./src/routes/index")>;
@@ -64,6 +88,38 @@ declare module "virtual:file-routes" {
       id: "/stores/";
       page: true;
       $component: FileRouteLazyRef<typeof import("./src/routes/stores/index")>;
+      $$route?: undefined;
+      children?: undefined;
+    },
+    {
+      path: "/building/";
+      id: "/building/";
+      page: true;
+      $component: FileRouteLazyRef<typeof import("./src/routes/building/index")>;
+      $$route?: undefined;
+      children?: undefined;
+    },
+    {
+      path: "/building/list_a/";
+      id: "/building/list_a/";
+      page: true;
+      $component: FileRouteLazyRef<typeof import("./src/routes/building/list_a/index")>;
+      $$route?: undefined;
+      children?: undefined;
+    },
+    {
+      path: "/building/list_b/";
+      id: "/building/list_b/";
+      page: true;
+      $component: FileRouteLazyRef<typeof import("./src/routes/building/list_b/index")>;
+      $$route?: undefined;
+      children?: undefined;
+    },
+    {
+      path: "/building/list_c/";
+      id: "/building/list_c/";
+      page: true;
+      $component: FileRouteLazyRef<typeof import("./src/routes/building/list_c/index")>;
       $$route?: undefined;
       children?: undefined;
     }

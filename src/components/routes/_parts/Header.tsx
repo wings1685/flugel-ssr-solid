@@ -3,6 +3,7 @@ export default function Header() {
 		<nav id="nav_global">
 			<a href="/">Home</a>
 			<a href="/stores">Stores</a>
+			<a href="/building">Building</a>
 		</nav>
 	)
 }
